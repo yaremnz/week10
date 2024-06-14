@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./class_demo.js"></script>
+    <style>
+        #playField{
+            width: 100vw;
+            height: 100vw;
+        }
+        .sprite{
+            position: absolute;
+            left: 3vw;
+            top: 3vw;
+        }
+    </style>
+</head>
+<body>
+    <div id=""playField">
+        <div class="sprite" id="hero">@</div>
+        <div class="sprite" id="zombieundefined">Z</div>
+    </div>
+    <pre id="statusOutput">?</pre>
+</body>
+<script>
+    const g = new Game();
+
+    function render(){
+    const status = g.getStatus();
+    status.spriteList.forEach(s=>{
+        const e =document.querySelector("#"+s.name);
+        e.style.left = s.location[0] + "vw";
+        e.style.left = s.location[1] + "vw"; 
+        });
+    }
+
+   render()
+   g.spriteList[0].move([11,11]);
+   render()
+   statusOutput.innerText = JSON.stringify(g.getStatus(),"",4);
+</script>
+</html>
